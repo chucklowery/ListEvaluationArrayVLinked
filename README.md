@@ -6,6 +6,11 @@ The the speed differences between Array/Vector and Linked List in java. This was
 
 https://www.youtube.com/watch?v=YQs6IC-vgmo
 
+
+This program will test the removal of elements for different places within the data structures. The result of the tests are the amount of time it takes the two structures to perform the operations clearing the entire structure.
+
+These test illustrate the differences in performance when using the two data structures when remove operations are required. 
+
 Example output:
 
 ```
