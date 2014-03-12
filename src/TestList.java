@@ -92,8 +92,7 @@ public class TestList {
 
     public static void main(String[] size) {
         TestList test = new TestList();
-        // 2147000000, 156250000, 31250000, 6250000, 
-        test.setSizes(1250000, 250000, 50000, 10000, 2000);
+        test.setSizes(2147000000, 156250000, 31250000, 6250000, 1250000, 250000, 50000, 10000, 2000);
         test.setEmptiers(new EmptyFromBack(), new EmptyFromFront(), new EmptyFromMiddle(), new EmptyFromQuarter());
         test.setWrappers(new ArrayListWrapper(), new LinkedListWrapper());
         test.run();
