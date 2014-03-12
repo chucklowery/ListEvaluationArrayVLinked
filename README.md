@@ -3,9 +3,8 @@ List Evaluation for runtime time complexity (Array List vs Linked List)
 
 The the speed differences between Array/Vector and Linked List in java. This was inspired by a presentation by Bjarne Stroustrup.
 
-
-https://www.youtube.com/watch?v=YQs6IC-vgmo
-
+Presentation: https://www.youtube.com/watch?v=YQs6IC-vgmo
+Additional Resource: http://www.codeproject.com/Articles/340797/Number-crunching-Why-you-should-never-ever-EVER-us#TOC_IRL
 
 This program will test the removal of elements from different locations within the data structures. The result of the tests are the amount of time it takes the two structures to perform the operations clearing the entire structure.
 
