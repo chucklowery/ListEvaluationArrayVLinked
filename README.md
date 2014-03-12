@@ -8,7 +8,9 @@ Additional Resource: http://www.codeproject.com/Articles/340797/Number-crunching
 
 This program will test the removal of elements from different locations within the data structures. The result of the tests are the amount of time it takes the two structures to perform the operations clearing the entire structure.
 
-These test illustrate the differences in performance when using the two data structures and with the requirement of removing at a given location for a given size.
+These tests illustrate the differences in performance when using the two data structures with the requirement of removing elements at a given location for a given size. 
+
+In order to represent the nature of the problem specific locations for were chosen. The middle (size / 1) should be worst case for linked list. This is the worst case for linked list as this will represent the most navigation (traversing from node to node) through the data structure. 
 
 Example output:
 
