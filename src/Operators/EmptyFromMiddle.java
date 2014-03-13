@@ -6,9 +6,7 @@ public class EmptyFromMiddle implements ListOperator {
 
     @Override
     public void perform(List<?> toEmpty) {
-        while (toEmpty.size() > 0) {
-            toEmpty.remove(toEmpty.size() / 2);
-        }
+        toEmpty.remove(toEmpty.size() / 2);
     }
 
     @Override

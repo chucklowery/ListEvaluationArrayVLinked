@@ -1,5 +1,6 @@
 package Timer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -19,7 +20,16 @@ public class Timer {
     public void stop() {
         end = System.currentTimeMillis();
         long t = end - start;
-        results.put(key, new Unit(key, t));
+        addTime(key, t);
+    }
+
+    protected void addTime(TimeKey key, long time) {
+        Unit unit = results.get(key);
+        if (unit == null) {
+            unit = new Unit(key);
+            results.put(key, unit);
+        }
+        unit.addTime(time);
     }
 
     public Map<TimeKey, Unit> getResults() {
@@ -28,15 +38,27 @@ public class Timer {
 
     public static class Unit implements TimeKey {
 
-        Long time;
-        TimeKey key;
+        private TimeKey key;
+        private ArrayList<Long> times = new ArrayList<>();
 
-        public Unit(TimeKey key, Long time) {
-            this.time = time;
+        public Unit(TimeKey key) {
+            this.key = key;
+        }
+
+        public void addTime(Long time) {
+            times.add(time);
         }
 
         public Long getTime() {
-            return time;
+            return sumTimes() / times.size();
+        }
+
+        protected long sumTimes() {
+            long total = 0;
+            for (long time : times) {
+                total += time;
+            }
+            return total;
         }
 
         @Override

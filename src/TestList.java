@@ -1,13 +1,7 @@
 
-import Operators.EmptyFromBack;
-import Operators.EmptyFromFront;
-import Operators.EmptyFromMiddle;
-import Operators.EmptyFromQuarter;
 import Operators.ListOperator;
 import Timer.TimeKey;
 import Timer.Timer;
-import Wrappers.ArrayListWrapper;
-import Wrappers.LinkedListWrapper;
 import Wrappers.ListWrapper;
 import java.util.Arrays;
 import java.util.Map;
@@ -21,7 +15,7 @@ import java.util.Map;
 public class TestList {
 
     public static final Byte TO_STORE = new Byte("1");
-    private int[] sizes;
+    private Integer[] sizes;
 
     private ListOperator[] emptiers;
     private ListWrapper[] wrappers;
@@ -32,11 +26,13 @@ public class TestList {
         for (ListWrapper wrapper : wrappers) {
             for (ListOperator emptier : emptiers) {
                 for (int size : sizes) {
-                    wrapper.construct(size, TO_STORE);
-                    timer.start(new TimeKeyImpl(size, emptier, wrapper));
-                    wrapper.apply(emptier);
-                    timer.stop();
-                    wrapper.clear();
+                    for(int i = 0; i < 1; i++) {
+                        wrapper.construct(size, TO_STORE);
+                        timer.start(new TimeKeyImpl(size, emptier, wrapper));
+                        wrapper.apply(emptier);
+                        timer.stop();
+                        wrapper.clear();
+                    }
                 }
             }
         }
@@ -46,7 +42,7 @@ public class TestList {
         timer = new Timer();
     }
 
-    public void setSizes(int... sizes) {
+    public void setSizes(Integer... sizes) {
         this.sizes = sizes;
     }
 
@@ -59,7 +55,7 @@ public class TestList {
     }
 
     public void printResults() {
-        int[] sortedSizes = Arrays.copyOf(sizes, sizes.length);
+        Integer[] sortedSizes = Arrays.copyOf(sizes, sizes.length);
         Arrays.sort(sortedSizes);
 
         Map<TimeKey, Timer.Unit> results = timer.getResults();
@@ -69,7 +65,6 @@ public class TestList {
             for (int size : sortedSizes) {
                 System.out.println(printResultRow(wrapper, size, results));
             }
-
         }
     }
 
@@ -88,14 +83,5 @@ public class TestList {
             result += String.format("%20s", emptier.getName());
         }
         return result;
-    }
-
-    public static void main(String[] size) {
-        TestList test = new TestList();
-        test.setSizes(2147000000, 156250000, 31250000, 6250000, 1250000, 250000, 50000, 10000, 2000);
-        test.setEmptiers(new EmptyFromBack(), new EmptyFromFront(), new EmptyFromMiddle(), new EmptyFromQuarter());
-        test.setWrappers(new ArrayListWrapper(), new LinkedListWrapper());
-        test.run();
-        test.printResults();
     }
 }
