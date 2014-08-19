@@ -13,10 +13,10 @@ import java.util.Map;
  * @author Chuck Lowery <chuck.lowery @ gmail.com>
  */
 public class TestList {
-
+    public static final int DEFAULT_EXECUTION_COUNT = 1;
+    private int operationCount = DEFAULT_EXECUTION_COUNT;
     public static final Byte TO_STORE = new Byte("1");
     private Integer[] sizes;
-
     private ListOperator[] emptiers;
     private ListWrapper[] wrappers;
     Timer timer;
@@ -26,7 +26,7 @@ public class TestList {
         for (ListWrapper wrapper : wrappers) {
             for (ListOperator emptier : emptiers) {
                 for (int size : sizes) {
-                    for(int i = 0; i < 1; i++) {
+                    for(int i = 0; i < operationCount; i++) {
                         wrapper.construct(size, TO_STORE);
                         timer.start(new TimeKeyImpl(size, emptier, wrapper));
                         wrapper.apply(emptier);
@@ -40,6 +40,10 @@ public class TestList {
 
     public TestList() {
         timer = new Timer();
+    }
+
+    public void setOperationCount(int operationCount) {
+        this.operationCount = operationCount;
     }
 
     public void setSizes(Integer... sizes) {

@@ -13,12 +13,12 @@ public class Timer {
     TimeKey key;
 
     public void start(TimeKey key) {
-        start = System.currentTimeMillis();
+        start = System.nanoTime();
         this.key = key;
     }
 
     public void stop() {
-        end = System.currentTimeMillis();
+        end = System.nanoTime();
         long t = end - start;
         addTime(key, t);
     }
