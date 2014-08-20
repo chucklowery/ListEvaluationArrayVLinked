@@ -12,6 +12,6 @@ public class EmptyFromBack implements ListOperator {
 
     @Override
     public String getName() {
-        return "Back (Suze - 1)";
+        return "Back (Size - 1)";
     }
 }

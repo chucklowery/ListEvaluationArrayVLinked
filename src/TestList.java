@@ -22,17 +22,17 @@ public class TestList {
     Timer timer;
 
     public void run() {
-
         for (ListWrapper wrapper : wrappers) {
             for (ListOperator emptier : emptiers) {
                 for (int size : sizes) {
+                    System.gc();
+                    timer.start(new TimeKeyImpl(size, emptier, wrapper));
+                    wrapper.construct(size, TO_STORE);
                     for(int i = 0; i < operationCount; i++) {
-                        wrapper.construct(size, TO_STORE);
-                        timer.start(new TimeKeyImpl(size, emptier, wrapper));
                         wrapper.apply(emptier);
-                        timer.stop();
-                        wrapper.clear();
                     }
+                    timer.stop();
+                    wrapper.clear();
                 }
             }
         }
@@ -76,7 +76,7 @@ public class TestList {
         String result = String.format("%-10s", size);
         for (ListOperator emptier : emptiers) {
 
-            result += String.format("%20s", units.get(new TimeKeyImpl(size, emptier, wrapper)).getTime());
+            result += String.format("%20.2f", (units.get(new TimeKeyImpl(size, emptier, wrapper)).getTime() / (float)1000000));
         }
         return result;
     }
